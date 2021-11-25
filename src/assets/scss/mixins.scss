@@ -1,0 +1,9 @@
+@use "variables" as *;
+
+@mixin container {
+  width: $container-width;
+  margin-right: auto;
+  margin-left: auto;
+  //padding-right: $container-padding;
+  //padding-left: $container-padding;
+}
