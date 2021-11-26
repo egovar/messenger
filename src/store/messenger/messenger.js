@@ -17,7 +17,6 @@ export const messengerModule = {
   getters: {
     dialogList: ({ dialogs }, getters) =>
       dialogs.map((dialog) => {
-        console.log(getters[`dialog_${dialog.id}/lastMessage`]);
         return {
           id: dialog.id,
           subject: dialog.subject,
