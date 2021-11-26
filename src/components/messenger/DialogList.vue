@@ -44,7 +44,7 @@ export default {
 <style scoped lang="scss">
 @use "src/assets/scss/variables" as *;
 .dialogs-list {
-  background-color: $dialog-list-background;
+  background-color: $dialog-list-background-color;
   width: 40%;
   height: 100%;
   overflow: auto;

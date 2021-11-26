@@ -26,7 +26,7 @@ export const messengerModule = {
             dialog.parts[dialog.parts.length - 1],
         };
       }),
-    messageAmount: ({ dialogs }, getters) =>
+    messageCount: ({ dialogs }, getters) =>
       dialogs.length > 0
         ? dialogs.reduce((previousDialog, currentDialog) => {
             return (

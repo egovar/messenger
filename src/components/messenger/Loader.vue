@@ -15,12 +15,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@use "src/assets/scss/variables" as *;
+
 .loader {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: $main-background-color;
   &__icon {
     width: 25%;
   }

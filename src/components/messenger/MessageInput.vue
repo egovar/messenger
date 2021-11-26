@@ -77,11 +77,14 @@ export default {
 
 <style scoped lang="scss">
 @use "src/assets/scss/variables" as *;
+@use "src/assets/scss/mixins" as *;
 
 .message-input {
   border-top: 1px solid $border-color;
 
   &__text-field {
+    @include main-text;
+    color: $preview-message-color;
     display: block;
     height: 100%;
     width: calc(100% - 5rem);
@@ -90,8 +93,6 @@ export default {
     padding: 1.875rem;
     outline: none;
     font-family: Montserrat, sans-serif;
-    font-size: 0.875rem;
-    line-height: 143%;
   }
 
   &__send-button {
@@ -103,7 +104,7 @@ export default {
     padding: 0;
     border: none;
     cursor: pointer;
-    background-color: $primary;
+    background-color: $primary-color;
     margin: 0;
 
     &[disabled] {

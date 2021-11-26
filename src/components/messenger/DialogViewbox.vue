@@ -82,7 +82,7 @@ export default {
 @use "src/assets/scss/variables" as *;
 
 .dialog-viewbox {
-  width: 60%; //calc(($container-width - ($container-padding * 2)) * 0.6);
+  width: 60%;
   height: 100vh;
   position: relative;
   box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.1);

@@ -1,15 +1,12 @@
 <template>
-  <div
-    class="message-preview"
-    :class="active ? 'message-preview_active' : null"
-  >
-    <h2 class="message-preview__subject">
+  <div class="dialog-preview" :class="active ? 'dialog-preview_active' : null">
+    <h2 class="dialog-preview__subject">
       {{ subject }}
     </h2>
-    <p class="message-preview__date">
+    <p class="dialog-preview__date">
       {{ formattedLastMessageDate }}
     </p>
-    <p class="message-preview__text">
+    <p class="dialog-preview__text">
       {{ lastMessageText }}
     </p>
   </div>
@@ -47,8 +44,9 @@ export default {
 
 <style scoped lang="scss">
 @use "src/assets/scss/variables" as *;
+@use "src/assets/scss/mixins" as *;
 
-.message-preview {
+.dialog-preview {
   padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -57,25 +55,22 @@ export default {
   cursor: pointer;
 
   &__subject {
+    @include main-text;
     color: $dialog-subject-color;
     font-weight: 500;
-    line-height: 143%;
-    font-size: 0.875rem;
     width: 70%;
   }
 
   &__date {
-    color: $preview-date-color;
-    font-size: 0.625rem;
-    line-height: 140%;
+    @include date-text;
+    color: $date-color;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   &__text {
+    @include medium-text;
     color: $preview-message-color;
-    font-size: 0.8125rem;
-    line-height: 138%;
     height: 2.25rem;
     word-break: break-word;
 
@@ -94,9 +89,12 @@ export default {
 
   &_active,
   &:hover {
-    background-color: $active-preview-background-color;
-    border-left: 2px solid $primary;
+    background-color: $main-background-color;
+    border-left: 2px solid $primary-color;
     padding-left: calc(1.5rem - 2px);
+    > .dialog-preview__date {
+      color: $preview-message-color;
+    }
   }
 }
 </style>

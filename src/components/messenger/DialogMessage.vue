@@ -40,37 +40,41 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@use "src/assets/scss/mixins" as *;
+@use "src/assets/scss/variables" as *;
+
 .message {
   width: 100%;
   margin-bottom: 1.25rem;
   display: flex;
   flex-direction: column;
   &__bubble {
-    font-size: 0.875rem;
-    line-height: 143%;
+    @include main-text;
     margin-bottom: 0.5rem;
     max-width: 60%;
     word-break: break-word;
     white-space: pre-wrap;
+    color: $message-text-color;
   }
   &__info {
     display: flex;
     align-items: baseline;
   }
   &__sender {
-    font-size: 0.8125rem;
+    @include medium-text;
+    color: $message-sender-color;
     margin-right: 0.75rem;
-    line-height: 140%;
   }
   &__time {
-    font-size: 0.625rem;
-    line-height: 140%;
+    @include date-text;
+    color: $date-color;
   }
   &_self {
     align-items: flex-end;
     > .message__bubble {
       border-radius: 0.5rem 0.5rem 0 0.5rem;
-      background-color: #e9f5f4;
+      background-color: $self-message-background-color;
+      color: $self-message-text-color;
       padding: 1rem 1rem 1rem 1.5rem;
     }
   }
@@ -78,7 +82,8 @@ export default {
     align-items: flex-start;
     > .message__bubble {
       border-radius: 0.5rem 0.5rem 0.5rem 0;
-      background-color: #f6f7f9;
+      background-color: $message-background-color;
+      color: $message-text-color;
       padding: 1rem 1.5rem 1rem 1rem;
     }
   }

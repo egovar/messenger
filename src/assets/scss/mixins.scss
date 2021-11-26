@@ -7,3 +7,18 @@
   //padding-right: $container-padding;
   //padding-left: $container-padding;
 }
+
+@mixin main-text {
+  font-size: 0.875rem;
+  line-height: 140%;
+}
+
+@mixin medium-text {
+  font-size: 0.8125rem;
+  line-height: 140%;
+}
+
+@mixin date-text {
+  font-size: 0.625rem;
+  line-height: 140%;
+}
