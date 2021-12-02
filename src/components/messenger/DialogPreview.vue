@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { formatDateString } from "@/utils/formatDate";
+import { formatDate } from "@/utils/formatDate";
 
 export default {
   props: {
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     formattedLastMessageDate() {
-      return formatDateString(this.lastMessageDate, 2);
+      return formatDate(this.lastMessageDate, 2);
     },
   },
 };

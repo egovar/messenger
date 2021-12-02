@@ -1,42 +1,40 @@
 /*
-Function for formatting strings like "2019-08-06 12:34"
-Gets date string in format like above and formatting type
+Function for formatting strings like "2019-08-06 12:34" / date objects
+Gets date string in format like above / date object and formatting type
 1 (default): 12.06.2021 13:29
 2: 12 ИЮНЯ 2021
 */
 
 const ISOStringPayloadLength = "2021-11-25T16:21".length;
 
-const monthArray = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноября",
-  "декабря",
-];
+const yearString = " г.";
 
-function formatDateString(dateString, type = 1) {
+const formatterFullMonth = new Intl.DateTimeFormat("ru", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+
+const formatterDefault = new Intl.DateTimeFormat("ru", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+
+function formatDate(date, type = 1) {
   try {
-    const dateStringSplitted = dateString.split(" ");
+    let dateObj;
+    if (typeof date === "string") dateObj = new Date(date);
+    else dateObj = date;
     switch (type) {
       case 2: {
-        const dateArray = dateStringSplitted[0].split("-").reverse();
-        dateArray[1] = monthArray[parseInt(dateArray[1]) - 1];
-        return dateArray.join(" ");
+        return formatterFullMonth.format(dateObj).replace(yearString, "");
       }
       default: {
-        return (
-          dateStringSplitted[0].split("-").reverse().join(".") +
-          " " +
-          dateStringSplitted[1]
-        );
+        return formatterDefault.format(dateObj).replace(",", "");
       }
     }
   } catch {
@@ -56,4 +54,4 @@ function dateObjectToString(dateObj) {
   }
 }
 
-export { formatDateString, dateObjectToString };
+export { formatDate, dateObjectToString };

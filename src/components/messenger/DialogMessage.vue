@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { formatDateString } from "@/utils/formatDate";
+import { formatDate } from "@/utils/formatDate";
 
 export default {
   props: {
@@ -33,7 +33,7 @@ export default {
   computed: {
     ...mapGetters(["userName"]),
     formattedSendingTime() {
-      return formatDateString(this.time);
+      return formatDate(this.time);
     },
   },
 };
