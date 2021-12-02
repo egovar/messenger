@@ -70,7 +70,7 @@ class Dialog {
       [SET_SERVER_MESSAGES]: (state, payload) =>
         (state.serverMessages = payload),
       [SET_NEW_MESSAGE]: (state, payload) => {
-        state.clientMessages = [...state.clientMessages, payload];
+        state.clientMessages.push(payload);
       },
       [START_MESSAGES_LOADING]: (state) => {
         state.isLoadingMessages = true;
