@@ -25,17 +25,18 @@ export const messengerModule = {
             dialog.parts[dialog.parts.length - 1],
         };
       }),
-    messageCount: ({ dialogs }, getters) =>
-      dialogs.length > 0
-        ? dialogs.reduce((previousDialog, currentDialog) => {
-            return (
-              (getters[`dialog_${previousDialog.id}/dialogLength`] ||
-                previousDialog.parts.length) +
-              (getters[`dialog_${currentDialog.id}/dialogLength`] ||
-                currentDialog.parts.length)
-            );
-          })
-        : 0,
+    dialogsEmpty: (store, { dialogList }) => dialogList.length <= 0,
+    messageCount: ({ dialogs }, getters) => {
+      if (getters.dialogsEmpty) return 0;
+      return dialogs.reduce((previousDialog, currentDialog) => {
+        return (
+          (getters[`dialog_${previousDialog.id}/dialogLength`] ||
+            previousDialog.parts.length) +
+          (getters[`dialog_${currentDialog.id}/dialogLength`] ||
+            currentDialog.parts.length)
+        );
+      });
+    },
     activeDialogId: ({ activeDialogId }) => activeDialogId,
     isLoading: ({ isLoading }) => isLoading,
   },
