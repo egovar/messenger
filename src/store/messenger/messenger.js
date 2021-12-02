@@ -41,11 +41,11 @@ export const messengerModule = {
     isLoading: ({ isLoading }) => isLoading,
   },
   mutations: {
-    [SET_DIALOG_LIST]: (state, payload) => {
-      state.dialogs = payload;
+    [SET_DIALOG_LIST]: (state, dialogs) => {
+      state.dialogs = dialogs;
     },
-    [SET_ACTIVE_DIALOG]: (state, payload) => {
-      state.activeDialogId = payload;
+    [SET_ACTIVE_DIALOG]: (state, dialogId) => {
+      state.activeDialogId = dialogId;
     },
     [START_LOADING]: (state) => (state.isLoading = true),
     [FINISH_LOADING]: (state) => (state.isLoading = false),

@@ -64,13 +64,13 @@ class Dialog {
     };
     this.mutations = {
       [CLEAR_NEW_MESSAGE_TEXT]: (state) => (state.newMessageText = ""),
-      [SET_NEW_MESSAGE_TEXT]: (state, payload) => {
-        state.newMessageText = payload;
+      [SET_NEW_MESSAGE_TEXT]: (state, text) => {
+        state.newMessageText = text;
       },
-      [SET_SERVER_MESSAGES]: (state, payload) =>
-        (state.serverMessages = payload),
-      [SET_NEW_MESSAGE]: (state, payload) => {
-        state.clientMessages.push(payload);
+      [SET_SERVER_MESSAGES]: (state, messages) =>
+        (state.serverMessages = messages),
+      [SET_NEW_MESSAGE]: (state, message) => {
+        state.clientMessages.push(message);
       },
       [START_MESSAGES_LOADING]: (state) => {
         state.isLoadingMessages = true;
@@ -88,7 +88,7 @@ class Dialog {
     this.actions = {
       [SEND_NEW_MESSAGE]: async ({
         commit,
-        state: { newMessageText, newMessageId },
+        getters: { newMessageText, newMessageId },
         rootGetters: { userName },
       }) => {
         commit(START_MESSAGE_SENDING);
