@@ -32,8 +32,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { SET_NEW_MESSAGE_TEXT } from "@/store/mutations";
-import { SEND_NEW_MESSAGE } from "@/store/actions";
+import { CHANGE_NEW_MESSAGE_TEXT, SEND_NEW_MESSAGE } from "@/store/actions";
 
 export default {
   name: "MessageInput",
@@ -47,8 +46,8 @@ export default {
         return this.$store.getters[`${this.dialogModule}/newMessageText`];
       },
       set(newValue) {
-        this.$store.commit(
-          `${this.dialogModule}/${SET_NEW_MESSAGE_TEXT}`,
+        this.$store.dispatch(
+          `${this.dialogModule}/${CHANGE_NEW_MESSAGE_TEXT}`,
           newValue.replace(/^\s|\s(?=\s)/gi, "") // Trim all spaces except last one. Check work in Safari
         );
       },

@@ -19,10 +19,11 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { GET_SERVER_MESSAGES } from "@/store/actions";
+
 import DialogMessage from "@/components/messenger/DialogMessage";
 import Dialog from "@/store/messenger/dialog/dialog";
 import MessageInput from "@/components/messenger/MessageInput";
-import { GET_SERVER_MESSAGES } from "@/store/actions";
 import Loader from "@/components/messenger/Loader";
 
 export default {

@@ -7,8 +7,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { SET_ACTIVE_DIALOG } from "@/store/mutations";
+import { mapGetters, mapActions } from "vuex";
+import { CHANGE_ACTIVE_DIALOG_ID } from "@/store/actions";
+
 import DialogList from "@/components/messenger/DialogList";
 import DialogViewbox from "@/components/messenger/DialogViewbox";
 import Loader from "@/components/messenger/Loader";
@@ -26,7 +27,7 @@ export default {
         return this.$store.getters["messenger/activeDialogId"];
       },
       set(newVal) {
-        this.$store.commit(`messenger/${SET_ACTIVE_DIALOG}`, newVal);
+        this[CHANGE_ACTIVE_DIALOG_ID](newVal);
       },
     },
   },
@@ -37,6 +38,9 @@ export default {
       },
       immediate: true,
     },
+  },
+  methods: {
+    ...mapActions("messenger", [CHANGE_ACTIVE_DIALOG_ID]),
   },
 };
 </script>
@@ -52,6 +56,7 @@ export default {
   display: flex;
   overflow: hidden;
   border-right: 1px solid $border-color;
+
   &__loader {
     width: 100%;
     height: 100%;

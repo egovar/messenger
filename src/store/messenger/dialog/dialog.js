@@ -1,6 +1,10 @@
 import { requestDialog } from "@/server/messenger";
 import { dateObjectToString } from "@/utils/formatDate";
-import { SEND_NEW_MESSAGE, GET_SERVER_MESSAGES } from "@/store/actions";
+import {
+  SEND_NEW_MESSAGE,
+  GET_SERVER_MESSAGES,
+  CHANGE_NEW_MESSAGE_TEXT,
+} from "@/store/actions";
 import {
   CLEAR_NEW_MESSAGE_TEXT,
   FINISH_MESSAGE_SENDING,
@@ -105,6 +109,9 @@ class Dialog {
         commit(START_MESSAGES_LOADING);
         commit(SET_SERVER_MESSAGES, await requestDialog(dialogId));
         commit(FINISH_MESSAGES_LOADING);
+      },
+      [CHANGE_NEW_MESSAGE_TEXT]: ({ commit }, text) => {
+        commit(SET_NEW_MESSAGE_TEXT, text);
       },
     };
   }

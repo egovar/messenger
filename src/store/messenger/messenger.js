@@ -5,7 +5,7 @@ import {
   SET_DIALOG_LIST,
   START_LOADING,
 } from "../mutations";
-import { GET_DIALOG_LIST } from "@/store/actions";
+import { CHANGE_ACTIVE_DIALOG_ID, GET_DIALOG_LIST } from "@/store/actions";
 
 export const messengerModule = {
   namespaced: true,
@@ -55,6 +55,9 @@ export const messengerModule = {
       commit(START_LOADING);
       commit(SET_DIALOG_LIST, await requestDialogsList());
       commit(FINISH_LOADING);
+    },
+    [CHANGE_ACTIVE_DIALOG_ID]: ({ commit }, dialogId) => {
+      commit(SET_ACTIVE_DIALOG, dialogId);
     },
   },
 };

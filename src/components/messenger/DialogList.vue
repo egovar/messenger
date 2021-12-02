@@ -16,9 +16,10 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { GET_DIALOG_LIST } from "@/store/actions";
+
 import MessagePreview from "@/components/messenger/DialogPreview";
 import MessageCounter from "@/components/messenger/MessageCounter";
-import { GET_DIALOG_LIST } from "@/store/actions";
 
 export default {
   name: "DialogList",
