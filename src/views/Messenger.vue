@@ -18,9 +18,6 @@ export default {
     "dialog-list": DialogList,
     "dialog-viewbox": DialogViewbox,
   },
-  beforeCreate() {
-    this.activeDialogId = this.$route.params.dialogId;
-  },
   computed: {
     ...mapGetters("messenger", ["isLoading"]),
     activeDialogId: {
@@ -33,8 +30,11 @@ export default {
     },
   },
   watch: {
-    "$route.params.dialogId"() {
-      this.activeDialogId = this.$route.params.dialogId;
+    "$route.params.dialogId": {
+      handler() {
+        this.activeDialogId = this.$route.params.dialogId;
+      },
+      immediate: true,
     },
   },
 };

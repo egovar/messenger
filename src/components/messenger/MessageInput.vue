@@ -5,8 +5,8 @@
         v-model="newMessageText"
         class="message-input__text-field"
         placeholder="Введите текст..."
-        @keypress="(e) => dispatchEnterPress(e)"
         aria-label="Введите текст нового сообщения"
+        @keypress="(e) => dispatchEnterPress(e)"
       ></textarea>
       <button
         type="submit"

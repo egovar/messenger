@@ -1,7 +1,7 @@
 <template>
   <div
     class="dialog__message message"
-    :class="sender === userName ? 'message_self' : null"
+    :class="isSelf(sender) ? 'message_self' : null"
   >
     <p class="message__bubble">{{ text }}</p>
     <div class="message__info">
@@ -34,6 +34,11 @@ export default {
     ...mapGetters(["userName"]),
     formattedSendingTime() {
       return formatDate(this.time);
+    },
+  },
+  methods: {
+    isSelf(sender) {
+      return sender === this.userName;
     },
   },
 };

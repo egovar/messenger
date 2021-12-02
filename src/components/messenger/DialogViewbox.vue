@@ -1,6 +1,6 @@
 <template>
-  <div class="dialog-viewbox" :key="activeDialogId">
-    <div class="dialog-viewbox__messages" ref="messages">
+  <div :key="activeDialogId" class="dialog-viewbox">
+    <div ref="messages" class="dialog-viewbox__messages">
       <dialog-message
         v-for="message in messages"
         :key="message.id"
@@ -26,8 +26,12 @@ import { GET_SERVER_MESSAGES } from "@/store/actions";
 import Loader from "@/components/messenger/Loader";
 
 export default {
-  name: "DialogViebox",
-  props: {},
+  name: "DialogViewbox",
+  components: {
+    Loader,
+    "dialog-message": DialogMessage,
+    "message-input": MessageInput,
+  },
   computed: {
     ...mapGetters("messenger", ["activeDialogId"]),
     dialogModule() {
@@ -38,6 +42,16 @@ export default {
     },
     isLoadingMessages() {
       return this.$store.getters[`${this.dialogModule}/isLoadingMessages`];
+    },
+  },
+  watch: {
+    activeDialogId: {
+      async handler() {
+        this.registerDialogModule();
+        await this.getDialog();
+        this.scrollToBottom();
+      },
+      immediate: true,
     },
   },
   methods: {
@@ -57,23 +71,6 @@ export default {
       messages.scrollTop = messages.scrollTop =
         messages.scrollHeight - messages.clientHeight;
     },
-  },
-  watch: {
-    async activeDialogId() {
-      this.registerDialogModule();
-      await this.getDialog();
-      this.scrollToBottom();
-    },
-  },
-  async mounted() {
-    this.registerDialogModule();
-    await this.getDialog();
-    this.scrollToBottom();
-  },
-  components: {
-    Loader,
-    "dialog-message": DialogMessage,
-    "message-input": MessageInput,
   },
 };
 </script>
